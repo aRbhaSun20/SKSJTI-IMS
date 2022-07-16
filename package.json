@@ -1,5 +1,5 @@
 {
-  "name": "arnavbackend",
+  "name": "sksjti-ims-backend",
   "version": "1.0.0",
   "description": "Backend Repo for project Arnav",
   "main": "index.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aRbhaSun20/Project-Arnav-backend.git"
+    "url": "git+https://github.com/aRbhaSun20/SKSJTI-IMS"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/aRbhaSun20/Project-Arnav-backend/issues"
+    "url": "https://github.com/aRbhaSun20/SKSJTI-IMS/issues"
   },
-  "homepage": "https://github.com/aRbhaSun20/Project-Arnav-backend#readme",
+  "homepage": "https://github.com/aRbhaSun20/SKSJTI-IMS#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",

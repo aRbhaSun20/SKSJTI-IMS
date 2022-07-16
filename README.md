@@ -1,4 +1,4 @@
-# Project-Arnav-backend
+# Project-SKSJTI-IMS-backend
 
 Backend Repo for project Arnav
 
