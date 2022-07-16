@@ -46,10 +46,12 @@ const FacultySchema = new mongoose.Schema({
   department: {
     type: String,
     required: true,
+    ref: "department",
   },
   course: {
     type: String,
     default: "",
+    ref: "department",
   },
   designation: {
     type: String,
@@ -60,8 +62,8 @@ const FacultySchema = new mongoose.Schema({
     default: "",
   },
   firstYear: {
-    type: String,
-    default: "",
+    type: Boolean,
+    default: false,
   },
   DOJ: {
     type: String,
