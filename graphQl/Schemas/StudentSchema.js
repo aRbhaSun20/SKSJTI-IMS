@@ -7,7 +7,12 @@ const {
   GraphQLBoolean,
 } = require("graphql");
 const { cacheManagement } = require("../../middlewares/CacheModule");
-const { PhoneType, AddressType } = require("./AddressSchema");
+const {
+  PhoneType,
+  AddressType,
+  AddressInputType,
+  PhoneInputType,
+} = require("./AddressSchema");
 
 const StudentSchema = {
   _id: {
@@ -41,10 +46,6 @@ const StudentSchema = {
   address: {
     type: AddressType,
     description: "address",
-  },
-  mobile: {
-    type: GraphQLString,
-    description: "mobile",
   },
   email: {
     type: GraphQLString,
@@ -126,19 +127,15 @@ const StudentOptionalSchema = {
   },
   panCard: { description: "pan card", type: GraphQLString },
   address: {
-    type: AddressType,
+    type: AddressInputType,
     description: "address",
-  },
-  mobile: {
-    type: GraphQLString,
-    description: "mobile",
   },
   email: {
     type: GraphQLString,
     description: "email",
   },
   phone: {
-    type: PhoneType,
+    type: PhoneInputType,
     description: "phone",
   },
   motherName: {

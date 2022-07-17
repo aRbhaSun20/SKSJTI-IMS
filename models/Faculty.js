@@ -34,9 +34,12 @@ const FacultySchema = new mongoose.Schema({
     },
     required: true,
   },
-  mobile: {
-    type: String,
-    default: "",
+  phone: {
+    type: {
+      residential: String,
+      permanent: String,
+    },
+    required: true,
   },
   email: {
     type: String,

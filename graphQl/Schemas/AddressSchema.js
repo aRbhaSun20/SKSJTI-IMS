@@ -33,7 +33,7 @@ const AddressType = new GraphQLObjectType({
 });
 const AddressInputType = new GraphQLInputObjectType({
   name: "AddressInput",
-  description: "Address",
+  description: "Address Input",
   fields: () => ({ ...AddressSchema }),
 });
 
@@ -43,10 +43,17 @@ const PhoneType = new GraphQLObjectType({
   fields: () => ({ ...PhoneSchema }),
 });
 
+const PhoneInputType = new GraphQLInputObjectType({
+  name: "PhoneInput",
+  description: "Phone Input",
+  fields: () => ({ ...PhoneSchema }),
+});
+
 module.exports = {
   AddressSchema,
   PhoneSchema,
   AddressType,
   PhoneType,
   AddressInputType,
+  PhoneInputType,
 };
