@@ -22,6 +22,10 @@ const StudentSchema = {
     type: GraphQLNonNull(GraphQLString),
     description: "kgId",
   },
+  password: {
+    type: GraphQLNonNull(GraphQLString),
+    description: "password",
+  },
   name: {
     type: GraphQLNonNull(GraphQLString),
     description: "name",
@@ -104,6 +108,10 @@ const StudentOptionalSchema = {
   usn: {
     type: GraphQLString,
     description: "kgId",
+  },
+  password: {
+    type: GraphQLNonNull(GraphQLString),
+    description: "password",
   },
   name: {
     type: GraphQLString,

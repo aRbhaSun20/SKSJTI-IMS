@@ -16,6 +16,7 @@ const facultyMutation = {
 
     resolve: async (parent, args) => {
       const facultyAdd = await new Faculty(args).save();
+      console.log(facultyAdd)
       if (cacheManagement.has("facultyAll")) cacheManagement.del("facultyAll");
       cacheManagement.set(setKey(facultyAdd._id), facultyAdd);
       return facultyAdd;

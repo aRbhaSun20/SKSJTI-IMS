@@ -1,6 +1,10 @@
 const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require("graphql");
 const { cacheManagement } = require("../../middlewares/CacheModule");
-const { AddressType, AddressInputType, PhoneInputType } = require("./AddressSchema");
+const {
+  AddressType,
+  AddressInputType,
+  PhoneInputType,
+} = require("./AddressSchema");
 
 const FacultySchema = {
   _id: {
@@ -9,6 +13,10 @@ const FacultySchema = {
   kgId: {
     type: GraphQLNonNull(GraphQLString),
     description: "kgId",
+  },
+  password: {
+    type: GraphQLNonNull(GraphQLString),
+    description: "password",
   },
   name: {
     type: GraphQLNonNull(GraphQLString),
@@ -72,6 +80,9 @@ const FacultyOptionalSchema = {
   kgId: {
     type: GraphQLString,
     description: "kgId",
+  },  password: {
+    type: GraphQLNonNull(GraphQLString),
+    description: "password",
   },
   name: {
     type: GraphQLString,

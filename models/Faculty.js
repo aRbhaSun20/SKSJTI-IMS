@@ -7,6 +7,10 @@ const FacultySchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,

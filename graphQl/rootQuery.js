@@ -5,6 +5,7 @@ const { facultyQuery } = require("./Queries/facultyQuery");
 const { internalsQuery } = require("./Queries/internalQuery");
 const { semesterMarksQuery } = require("./Queries/semesterMarksQuery");
 const { studentQuery } = require("./Queries/studentQuery");
+const { userQuery } = require("./Queries/userQuery");
 
 const RootQueryType = new GraphQLObjectType({
   name: "Query",
@@ -16,6 +17,7 @@ const RootQueryType = new GraphQLObjectType({
     ...departmentQuery,
     ...internalsQuery,
     ...semesterMarksQuery,
+    ...userQuery,
   }),
 });
 
