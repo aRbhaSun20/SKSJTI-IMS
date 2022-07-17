@@ -27,12 +27,11 @@ const FacultySchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  addressPermanent: {
-    type: String,
-    required: true,
-  },
-  addressResident: {
-    type: String,
+  address: {
+    type: {
+      permanent: String,
+      resident: String,
+    },
     required: true,
   },
   mobile: {
@@ -44,12 +43,12 @@ const FacultySchema = new mongoose.Schema({
     default: "",
   },
   department: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     required: true,
     ref: "department",
   },
   course: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     default: "",
     ref: "department",
   },

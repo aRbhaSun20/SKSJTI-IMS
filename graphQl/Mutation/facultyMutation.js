@@ -12,7 +12,7 @@ const facultyMutation = {
   addFaculty: {
     type: FacultyType,
     description: "Add New Faculty",
-    args: FacultySchema,
+    args: FacultyOptionalSchema,
 
     resolve: async (parent, args) => {
       const facultyAdd = await new Faculty(args).save();
@@ -24,9 +24,7 @@ const facultyMutation = {
   editFaculty: {
     type: FacultyType,
     description: "Edit Faculty",
-    args: {
-      ...FacultyOptionalSchema,
-    },
+    args: FacultyOptionalSchema,
     resolve: async (parent, args) => {
       const { _id, ...remaining } = args;
       const data = await Faculty.findOneAndUpdate(

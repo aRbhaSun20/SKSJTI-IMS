@@ -16,19 +16,18 @@ const StudentSchema = new mongoose.Schema({
     required: true,
   },
   age: {
-    type: String,
+    type: Number,
     required: true,
   },
   email: {
     type: String,
     default: "",
   },
-  phoneRes: {
-    type: String,
-    required: true,
-  },
-  phonePer: {
-    type: String,
+  phone: {
+    type: {
+      residential: String,
+      permanent: String,
+    },
     required: true,
   },
   motherName: {
@@ -39,13 +38,11 @@ const StudentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  addressPermanent: {
-    type: String,
-    default: "",
-    required: true,
-  },
-  addressTemp: {
-    type: String,
+  address: {
+    type: {
+      permanent: String,
+      resident: String,
+    },
     required: true,
   },
   gender: {
@@ -61,29 +58,25 @@ const StudentSchema = new mongoose.Schema({
     default: "BTECH",
   },
   course: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     ref: "department",
   },
   doj: {
     type: String,
     required: true,
   },
-  semesterCurrentId: {
-    type: Number,
-    ref: 1,
-  },
   semesterMarksId: {
-    type: [String],
+    type: [mongoose.Types.ObjectId],
     required: true,
     ref: "SemesterMarks",
   },
-  batchId: {
-    type: String,
+  batch: {
+    type: mongoose.Types.ObjectId,
     required: true,
     ref: "Batch",
   },
   internalMarksId: {
-    type: [String],
+    type: [mongoose.Types.ObjectId],
     ref: "Internals",
   },
   approval: {

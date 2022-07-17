@@ -1,10 +1,6 @@
-const {
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLNonNull,
-  GraphQLList,
-} = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require("graphql");
 const { cacheManagement } = require("../../middlewares/CacheModule");
+const { AddressType, AddressInputType } = require("./AddressSchema");
 
 const FacultySchema = {
   _id: {
@@ -31,13 +27,9 @@ const FacultySchema = {
     description: "dob",
   },
   panCard: { description: "pan card", type: GraphQLString },
-  addressPermanent: {
-    type: GraphQLNonNull(GraphQLString),
-    description: "address permanent",
-  },
-  addressResident: {
-    type: GraphQLNonNull(GraphQLString),
-    description: "resident address",
+  address: {
+    type: AddressType,
+    description: "address",
   },
   mobile: {
     type: GraphQLString,
@@ -98,13 +90,9 @@ const FacultyOptionalSchema = {
     description: "dob",
   },
   panCard: { description: "pan card", type: GraphQLString },
-  addressPermanent: {
-    type: GraphQLString,
-    description: "address permanent",
-  },
-  addressResident: {
-    type: GraphQLString,
-    description: "resident address",
+  address: {
+    type: AddressInputType,
+    description: "address",
   },
   mobile: {
     type: GraphQLString,
@@ -146,4 +134,8 @@ const FacultyType = new GraphQLObjectType({
   fields: () => ({ ...FacultySchema }),
 });
 
-module.exports = { FacultyType, FacultySchema, FacultyOptionalSchema };
+module.exports = {
+  FacultyType,
+  FacultySchema,
+  FacultyOptionalSchema,
+};

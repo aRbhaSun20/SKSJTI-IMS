@@ -7,9 +7,10 @@ const SemesterMarksSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  batch: {
-    type: String,
+  batchId: {
+    type: mongoose.Types.ObjectId,
     required: true,
+    ref:"Batch"
   },
   subject: {
     type: String,
