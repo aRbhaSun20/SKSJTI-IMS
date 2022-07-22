@@ -1,0 +1,29 @@
+version: '3'
+services:
+  sksjti-ims:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/opt/www/app/
+      - /app/node_modules
+    env_file:
+      - ./.env
+    # environment:
+    #   - PORT=4000
+  
+  mongo:
+    image: mongo:latest
+    command: mongod --quiet --logpath /dev/null
+    ports:
+      - "27017:27017"
+    restart: always
+    container_name: ims-backend
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=Arbhasun
+      - MONGO_INITDB_ROOT_PASSWORD=fjZASMrSuXy0q2DM
+    volumes:
+      - mongo-db:/data/db
+  
+volumes:
+  mongo-db:

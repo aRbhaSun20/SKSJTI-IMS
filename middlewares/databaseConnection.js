@@ -23,14 +23,13 @@ let gfs, gridfsBucket;
 
 //   console.log(client.set("framework", "ReactJS"));
 // };
-
 mongoose
   .connect(process.env.MONGODBURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then((res) => {
-    console.log("connected to db");
+    console.log("connected to db1");
   })
   .catch((e) => console.log(e));
 

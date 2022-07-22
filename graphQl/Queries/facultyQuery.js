@@ -10,7 +10,7 @@ const { FacultyType } = require("../Schemas/FacultySchema");
 const facultyQuery = {
   faculty: {
     type: FacultyType,
-    description: "single faculty ",
+    description: "single faculty details",
     args: {
       _id: { type: GraphQLNonNull(GraphQLString) },
     },
