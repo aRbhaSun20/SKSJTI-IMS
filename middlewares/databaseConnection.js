@@ -26,7 +26,7 @@ let gfs, gridfsBucket;
 console.log(process.env.MONGODBURL)
 mongoose
   .connect(
-    "mongodb://Arbhasun:fjZASMrSuXy0q2DM@mongo:27017/sksjtiIms?authSource=admin",
+    process.env.MONGODBURL,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
