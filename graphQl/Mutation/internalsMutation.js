@@ -17,7 +17,6 @@ const internalsMutation = {
     resolve: async (parent, args) => {
       const internalsAdd = await new Internals(args).save();
       if (cacheManagement.has("internalsAll")) cacheManagement.del("internalsAll");
-      cacheManagement.set(setKey(internalsAdd._id), internalsAdd);
       return internalsAdd;
     },
   },
@@ -33,7 +32,7 @@ const internalsMutation = {
         { new: true }
       );
       if (cacheManagement.has("internalsAll")) cacheManagement.del("internalsAll");
-      cacheManagement.set(setKey(data._id), data);
+      
       return data;
     },
   },

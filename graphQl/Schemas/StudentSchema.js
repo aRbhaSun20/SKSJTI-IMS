@@ -7,12 +7,14 @@ const {
   GraphQLBoolean,
 } = require("graphql");
 const { cacheManagement } = require("../../middlewares/CacheModule");
+const Batch = require("../../models/Batch");
 const {
   PhoneType,
   AddressType,
   AddressInputType,
   PhoneInputType,
 } = require("./AddressSchema");
+const { BatchType } = require("./BatchSchema");
 
 const StudentSchema = {
   _id: {
@@ -75,9 +77,22 @@ const StudentSchema = {
     type: GraphQLString,
     description: "course",
   },
-  batch: {
+  batchId: {
     type: GraphQLString,
-    description: "batch ",
+    description: "batch id",
+  },
+  batch: {
+    type: BatchType,
+    description: "Batch Details",
+    resolve: async (student) => {
+      if (cacheManagement.has(student.batchId)) {
+        return cacheManagement.get(student.batchId);
+      } else {
+        const data = await Batch.findById(student.batchId);
+        cacheManagement.set(student.batchId.toString(), data);
+        return data;
+      }
+    },
   },
   internalMarksId: {
     type: GraphQLList(GraphQLString),
@@ -98,6 +113,10 @@ const StudentSchema = {
   doj: {
     type: GraphQLNonNull(GraphQLString),
     description: "date of joining",
+  },
+  currentYear: {
+    type: GraphQLString,
+    description: "current Year",
   },
 };
 
@@ -162,7 +181,7 @@ const StudentOptionalSchema = {
     type: GraphQLString,
     description: "course",
   },
-  batch: {
+  batchId: {
     type: GraphQLString,
     description: "batch ",
   },
@@ -185,6 +204,10 @@ const StudentOptionalSchema = {
   doj: {
     type: GraphQLString,
     description: "date of joining",
+  },
+  currentYear: {
+    type: GraphQLString,
+    description: "current Year",
   },
 };
 

@@ -1,10 +1,13 @@
 const { GraphQLObjectType, GraphQLString, GraphQLNonNull } = require("graphql");
 const { cacheManagement } = require("../../middlewares/CacheModule");
+const Department = require("../../models/Department");
 const {
   AddressType,
   AddressInputType,
   PhoneInputType,
+  PhoneType,
 } = require("./AddressSchema");
+const { DepartmentType } = require("./DepartmentSchema");
 
 const FacultySchema = {
   _id: {
@@ -39,17 +42,30 @@ const FacultySchema = {
     type: AddressType,
     description: "address",
   },
-  mobile: {
-    type: GraphQLString,
-    description: "mobile",
+  phone: {
+    type: PhoneType,
+    description: "phone",
   },
   email: {
     type: GraphQLString,
     description: "email",
   },
-  department: {
+  departmentId: {
     type: GraphQLNonNull(GraphQLString),
     description: "department",
+  },
+  department: {
+    type: DepartmentType,
+    description: "department Details",
+    resolve: async (faculty) => {
+      if (cacheManagement.has(faculty.departmentId)) {
+        return cacheManagement.get(faculty.departmentId);
+      } else {
+        const data = await Department.findById(faculty.departmentId);
+        cacheManagement.set(data._id.toString(), data);
+        return data;
+      }
+    },
   },
   course: {
     type: GraphQLNonNull(GraphQLString),
@@ -80,7 +96,8 @@ const FacultyOptionalSchema = {
   kgId: {
     type: GraphQLString,
     description: "kgId",
-  },  password: {
+  },
+  password: {
     type: GraphQLNonNull(GraphQLString),
     description: "password",
   },
@@ -113,10 +130,11 @@ const FacultyOptionalSchema = {
     type: GraphQLString,
     description: "email",
   },
-  department: {
+  departmentId: {
     type: GraphQLString,
     description: "department",
   },
+
   course: {
     type: GraphQLString,
     description: "course",

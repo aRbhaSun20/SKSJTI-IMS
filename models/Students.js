@@ -74,7 +74,7 @@ const StudentSchema = new mongoose.Schema({
     required: true,
     ref: "SemesterMarks",
   },
-  batch: {
+  batchId: {
     type: mongoose.Types.ObjectId,
     required: true,
     ref: "Batch",
@@ -94,6 +94,10 @@ const StudentSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: () => DateTime.now().toString(),
+  },
+  currentYear: {
+    type: String,
+    default: () => DateTime.now().year.toFixed(),
   },
 });
 

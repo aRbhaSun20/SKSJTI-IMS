@@ -18,7 +18,6 @@ const facultyMutation = {
       const facultyAdd = await new Faculty(args).save();
       console.log(facultyAdd)
       if (cacheManagement.has("facultyAll")) cacheManagement.del("facultyAll");
-      cacheManagement.set(setKey(facultyAdd._id), facultyAdd);
       return facultyAdd;
     },
   },
@@ -34,7 +33,7 @@ const facultyMutation = {
         { new: true }
       );
       if (cacheManagement.has("facultyAll")) cacheManagement.del("facultyAll");
-      cacheManagement.set(setKey(data._id), data);
+      
       return data;
     },
   },

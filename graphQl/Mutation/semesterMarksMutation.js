@@ -18,7 +18,6 @@ const semesterMarksMutation = {
       const semesterMarksAdd = await new SemesterMarks(args).save();
       if (cacheManagement.has("semesterMarksAll"))
         cacheManagement.del("semesterMarksAll");
-      cacheManagement.set(setKey(semesterMarksAdd._id), semesterMarksAdd);
       return semesterMarksAdd;
     },
   },
@@ -35,7 +34,7 @@ const semesterMarksMutation = {
       );
       if (cacheManagement.has("semesterMarksAll"))
         cacheManagement.del("semesterMarksAll");
-      cacheManagement.set(setKey(data._id), data);
+
       return data;
     },
   },

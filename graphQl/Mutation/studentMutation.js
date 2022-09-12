@@ -17,7 +17,6 @@ const studentMutation = {
     resolve: async (parent, args) => {
       const studentAdd = await new Student(args).save();
       if (cacheManagement.has("studentAll")) cacheManagement.del("studentAll");
-      cacheManagement.set(setKey(studentAdd._id), studentAdd);
       return studentAdd;
     },
   },
@@ -33,7 +32,6 @@ const studentMutation = {
         { new: true }
       );
       if (cacheManagement.has("studentAll")) cacheManagement.del("studentAll");
-      cacheManagement.set(setKey(data._id), data);
       return data;
     },
   },

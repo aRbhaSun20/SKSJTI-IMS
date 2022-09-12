@@ -49,7 +49,7 @@ const FacultySchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  department: {
+  departmentId: {
     type: mongoose.Types.ObjectId,
     required: true,
     ref: "department",

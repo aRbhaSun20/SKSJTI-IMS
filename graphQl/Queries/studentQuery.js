@@ -3,6 +3,7 @@ const {
   cacheManagement,
   saveMultiple,
 } = require("../../middlewares/CacheModule");
+const Batch = require("../../models/Batch");
 const Students = require("../../models/Students");
 const { StudentType } = require("../Schemas/StudentSchema");
 
@@ -35,6 +36,36 @@ const studentQuery = {
       }
       const datas = await Students.find();
       saveMultiple(datas, "studentAll", false);
+      return datas;
+    },
+  },
+  studentBatchWise: {
+    type: GraphQLList(StudentType),
+    description: "list of student batch Wise",
+    args: {
+      batchYear: { type: GraphQLNonNull(GraphQLString) },
+    },
+    resolve: async (parent, args) => {
+      const selectedBatch = await Batch.findOne({ schemeYear: args.batchYear });
+      if (selectedBatch) {
+        const batchId = selectedBatch._id;
+        console.log(batchId);
+        const datas = await Students.find({
+          batchId,
+        });
+        return datas;
+      }
+      return new Error("no Students exist");
+    },
+  },
+  studentYearWise: {
+    type: GraphQLList(StudentType),
+    description: "list of student year Wise",
+    args: {
+      currentYear: { type: GraphQLNonNull(GraphQLString) },
+    },
+    resolve: async (parent, args) => {
+      const datas = await Students.find({ currentYear: args.currentYear });
       return datas;
     },
   },

@@ -17,7 +17,6 @@ const batchMutation = {
     resolve: async (parent, args) => {
       const batchAdd = await new Batch(args).save();
       if (cacheManagement.has("batchAll")) cacheManagement.del("batchAll");
-      cacheManagement.set(setKey(batchAdd._id), batchAdd);
       return batchAdd;
     },
   },
@@ -33,7 +32,6 @@ const batchMutation = {
         { new: true }
       );
       if (cacheManagement.has("batchAll")) cacheManagement.del("batchAll");
-      cacheManagement.set(setKey(data._id), data);
       return data;
     },
   },

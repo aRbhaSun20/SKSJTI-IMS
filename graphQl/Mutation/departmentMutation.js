@@ -16,8 +16,8 @@ const departmentMutation = {
 
     resolve: async (parent, args) => {
       const departmentAdd = await new Department(args).save();
-      if (cacheManagement.has("departmentAll")) cacheManagement.del("departmentAll");
-      cacheManagement.set(setKey(departmentAdd._id), departmentAdd);
+      if (cacheManagement.has("departmentAll"))
+        cacheManagement.del("departmentAll");
       return departmentAdd;
     },
   },
@@ -32,8 +32,9 @@ const departmentMutation = {
         { $set: { ...remaining } },
         { new: true }
       );
-      if (cacheManagement.has("departmentAll")) cacheManagement.del("departmentAll");
-      cacheManagement.set(setKey(data._id), data);
+      if (cacheManagement.has("departmentAll"))
+        cacheManagement.del("departmentAll");
+
       return data;
     },
   },
@@ -47,7 +48,8 @@ const departmentMutation = {
     },
     resolve: async (parent, args) => {
       if (cacheManagement.has(args._id)) cacheManagement.del(args._id);
-      if (cacheManagement.has("departmentAll")) cacheManagement.del("departmentAll");
+      if (cacheManagement.has("departmentAll"))
+        cacheManagement.del("departmentAll");
       return await Department.findOneAndRemove({ _id: args._id });
     },
   },
